@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/styles/app.css"/>
+    <script src="assets/scripts/app.js" defer></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <main class="calculator">
+      <section class="display-panel">
+        <p id="current-result">0</p>
+      </section>
+      <section class="button-panel">
+        <div class="row">
+          <button type="button" class="first-line" id="btn-ac">AC</button>
+          <button type="button" class="first-line" id="btn-pls-mns">+/-</button>
+          <button type="button" class="first-line" id="btn-modulus">%</button>
+          <button type="button" class="operator" id="btn-divide">/</button>
+        </div>
+
+        <div class="row">
+          <button type="button" id="btn-seven">7</button>
+          <button type="button" id="btn-eight">8</button>
+          <button type="button" id="btn-nine">9</button>
+          <button type="button" class="operator" id="btn-multiply">x</button>
+        </div>
+
+        <div class="row">
+          <button type="button" id="btn-four">4</button>
+          <button type="button" id="btn-five">5</button>
+          <button type="button" id="btn-six">6</button>
+          <button type="button" class="operator" id="btn-subtract">-</button>
+        </div>
+
+        <div class="row">
+          <button type="button" id="btn-one">1</button>
+          <button type="button" id="btn-two">2</button>
+          <button type="button" id="btn-three">3</button>
+          <button type="button" class="operator" id="btn-add">+</button>
+        </div>
+
+        <div class="row">
+          <button type="button" id="btn-zero">0</button>
+          <button type="button" id="btn-comma">.</button>
+          <button type="button" class="operator" id="btn-equals">=</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
