@@ -8,46 +8,69 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/styles/app.css"/>
     <script src="assets/scripts/app.js" defer></script>
-    <script src="index.js" defer></script>
   </head>
   <body>
     <main class="calculator">
       <section class="display-panel">
         <p id="current-result">0</p>
+        <button id="toggle-btn">...</button>
       </section>
       <section class="button-panel">
-        <div class="row">
-          <button type="button" class="first-line" id="btn-ac">AC</button>
-          <button type="button" class="first-line" id="btn-pls-mns">+/-</button>
-          <button type="button" class="first-line" id="btn-modulus">%</button>
-          <button type="button" class="operator" id="btn-divide">/</button>
-        </div>
-
-        <div class="row">
-          <button type="button" id="btn-seven">7</button>
-          <button type="button" id="btn-eight">8</button>
-          <button type="button" id="btn-nine">9</button>
-          <button type="button" class="operator" id="btn-multiply">x</button>
-        </div>
-
-        <div class="row">
-          <button type="button" id="btn-four">4</button>
-          <button type="button" id="btn-five">5</button>
-          <button type="button" id="btn-six">6</button>
-          <button type="button" class="operator" id="btn-subtract">-</button>
-        </div>
-
-        <div class="row">
-          <button type="button" id="btn-one">1</button>
-          <button type="button" id="btn-two">2</button>
-          <button type="button" id="btn-three">3</button>
-          <button type="button" class="operator" id="btn-add">+</button>
-        </div>
-
-        <div class="row">
-          <button type="button" id="btn-zero">0</button>
-          <button type="button" id="btn-comma">.</button>
-          <button type="button" class="operator" id="btn-equals">=</button>
+        <div class="column">
+          <div id="popup-buttons">
+            <div class="popup-row">
+              <button type="button" class="hid" id="btn-div-itself">1/x</button>
+              <button type="button" class="hid" id="btn-ten-power">10^x</button>
+            </div>
+            <div class="popup-row">
+              <button type="button" class="hid" id="btn-ln">ln</button>
+              <button type="button" class="hid" id="btn-log">log(10)</button>
+            </div>
+            <div class="popup-row">
+              <button type="button" class="hid" id="btn-e">e</button>
+              <button type="button" class="hid" id="btn-unlem">x!</button>
+            </div>
+            <div class="popup-row">
+              <button type="button" class="hid" id="btn-power-two">x^2</button>
+              <button type="button" class="hid" id="btn-power-three">x^3</button>
+            </div>
+            <div class="popup-row">
+              <button type="button" class="hid" id="btn-pi">π</button>
+              <button type="button" class="hid" id="btn-power-half">x^1/2</button>
+            </div>
+          </div>
+           
+          <div id="popup-buttons-main-panel">
+            <div class="row">
+              <button type="button" class="toggl first-line" id="btn-ac">AC</button>
+              <button type="button" class="toggl first-line" id="btn-pls-mns">+/-</button>
+              <button type="button" class="toggl first-line" id="btn-modulus">%</button>
+              <button type="button" class="toggl operator" id="btn-divide">/</button>
+            </div>
+            <div class="row">
+              <button type="button" class= "toggl" id="btn-seven">7</button>
+              <button type="button" class= "toggl" id="btn-eight">8</button>
+              <button type="button" class= "toggl" id="btn-nine">9</button>
+              <button type="button" class="toggl operator" id="btn-multiply">x</button>
+            </div>
+            <div class="row">
+              <button type="button" class= "toggl" id="btn-four">4</button>
+              <button type="button" class= "toggl" id="btn-five">5</button>
+              <button type="button" class= "toggl" id="btn-six">6</button>
+              <button type="button" class="toggl operator" id="btn-subtract">-</button>
+            </div>
+            <div class="row">
+              <button type="button" class= "toggl" id="btn-one">1</button>
+              <button type="button" class= "toggl" id="btn-two">2</button>
+              <button type="button" class= "toggl" id="btn-three">3</button>
+              <button type="button" class="toggl operator" id="btn-add">+</button>
+            </div>
+            <div class="row">
+              <button type="button" class= "toggl" id="btn-zero">0</button>
+              <button type="button" class= "toggl" id="btn-comma">.</button>
+              <button type="button" class="toggl operator" id="btn-equals">=</button>
+            </div>
+          </div>
         </div>
       </section>
     </main>
