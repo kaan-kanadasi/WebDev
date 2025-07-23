@@ -44,6 +44,7 @@ let currentInput = "0";
 let previousInput = "";
 let operation = null;
 let equalsPressed = false;
+let hidOperationPressed = false;
 
 // ********************* //
 // FUNCTIONS  
@@ -63,14 +64,20 @@ function changeACDisplay(value)
 
 function handleDigit(digit) 
 {
-    if (equalsPressed) 
+    if (equalsPressed || hidOperationPressed) 
     {
         if (previousInput.includes(".")) { currentInput += previousInput + digit; } 
-        else {  currentInput = digit; }// when a digit is pressed start fresh after equal is pressed 
+        else { currentInput = digit; }// when a digit is pressed start fresh after equal is pressed 
         previousInput = "";
         operation = null;
-        equalsPressed = false; // reset the variable for the next activiation 
+        equalsPressed = false; // reset the variable for the next activiation
+        hidOperationPressed = false; // reset the variable for the next activiation
     } 
+    else if (hidOperationPressed) 
+    {
+        previousInput = "";
+        hidOperationPressed = false; // reset the variable for the next activiation 
+    }
     else if(digit === "0" && currentInput === "0") { return; } // if 0 is already the displayed value, dont add more 0s next to it
     else if(digit !== "0" && currentInput === "0") { currentInput = digit; } // if 0 is already the displayed value, erase it before creating a new display  
     else { currentInput += digit; } // string concat if equal is not pressed else handle operation
@@ -181,19 +188,45 @@ function addDecimal()
     }
 }
 
+function multiplyNum(amount) 
+{
+    if(currentInput !== "") 
+    {
+        currentInput = (parseFloat(currentInput) * amount).toString();
+        changeDisplay(currentInput);
+    }
+    else if (previousInput !== "")
+    {
+        previousInput = (parseFloat(previousInput) * amount).toString();
+        changeDisplay(previousInput);  
+    }
+}
 
 function divItself() 
 {
     if(currentInput !== "") 
     {
+        if(currentInput === 0) 
+        { 
+            changeDisplay("Error");
+            resetState();
+            return;
+        } 
         currentInput = (1/ parseFloat(currentInput)).toString();
         changeDisplay(currentInput);
     }
     else if (previousInput !== "")
     {
+        if(previousInput === 0) 
+        { 
+            changeDisplay("Error");
+            resetState();
+            return;
+        }
         previousInput = (1/ parseFloat(previousInput)).toString();
         changeDisplay(previousInput);  
     }
+    hidOperationPressed = true;
 }
 
 function tenPower() 
@@ -208,6 +241,7 @@ function tenPower()
         previousInput = (10 ** parseFloat(previousInput)).toString();
         changeDisplay(previousInput);  
     }
+    hidOperationPressed = true;
 }
 
 function log() 
@@ -222,6 +256,7 @@ function log()
         previousInput = (Math.log10(parseFloat(previousInput))).toString();
         changeDisplay(previousInput);  
     }
+    hidOperationPressed = true;
 }
 
 function ln() 
@@ -254,30 +289,45 @@ function ln()
             changeDisplay(previousInput);  
         }
     }
+    hidOperationPressed = true;
 }
 
 function factorial(num) 
 {
-    let result = 1;
-    while(num > 1) 
+    num = parseInt(num); 
+    if(num < 0)
     {
-        result *= num--;
+        changeDisplay("Error");
+        resetState();
+        return;
     }
+    let result = 1;
+    while(num > 1) { result *= num--; }
     return result;
 }
 
 function unlem() 
 {
+    let result;
     if(currentInput !== "") 
     {
-        currentInput = factorial(currentInput) 
-        changeDisplay(currentInput);
+        result = factorial(currentInput) 
+        if(result !== undefined) 
+        {
+            currentInput = result.toString();
+            changeDisplay(currentInput);
+        }
     }
     else if (previousInput !== "")
     {
-        previousInput = factorial(previousInput) 
-        changeDisplay(previousInput);  
+        result = factorial(previousInput) 
+        if(result !== undefined) 
+        {
+            previousInput = result.toString();
+            changeDisplay(previousInput);
+        }
     }
+    hidOperationPressed = true;
 }
 
 function power(n)
@@ -292,34 +342,49 @@ function power(n)
         previousInput = (parseFloat(previousInput) ** n).toString();
         changeDisplay(previousInput);  
     }
+    hidOperationPressed = true;
 }
 
 function e() 
 {
+    const eValue = Math.E.toString();
     if(currentInput !== "") 
     {
-        currentInput = Math.E;
+        currentInput = eValue;
         changeDisplay(currentInput);
     }
     else if (previousInput !== "")
     {
-        previousInput = Math.E;
+        previousInput = eValue;
         changeDisplay(previousInput);  
+    } 
+    else 
+    {
+        currentInput = eValue;
+        changeDisplay(currentInput);
     }
+    hidOperationPressed = true;
 }
 
 function pi() 
 {
+    const piValue = Math.PI.toString();
     if(currentInput !== "") 
     {
-        currentInput = Math.PI;
+        currentInput = piValue;
         changeDisplay(currentInput);
     }
     else if (previousInput !== "")
     {
-        previousInput = Math.PI;
+        previousInput = piValue;
         changeDisplay(previousInput);  
     }
+    else 
+    {
+        currentInput = piValue;
+        changeDisplay(currentInput);
+    }
+    hidOperationPressed = true;
 }
 
 // ********************* //
@@ -349,10 +414,10 @@ lnBtn.addEventListener("click", ln);
 logBtn.addEventListener("click", log);
 eBtn.addEventListener("click", e);
 unlemBtn.addEventListener("click", unlem);
-powerTwoBtn.addEventListener("click", power(2));
-powerThreeBtn.addEventListener("click", power(3));
+powerTwoBtn.addEventListener("click", () => power(2));
+powerThreeBtn.addEventListener("click", () => power(3));
 piBtn.addEventListener("click", pi);
-powerHalfBtn.addEventListener("click", power(0.5));
+powerHalfBtn.addEventListener("click", () => power(0.5));
 
 changeDisplay("0"); // start with 0 
 
