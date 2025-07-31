@@ -51,15 +51,15 @@ let hidOperationPressed = false;
 // ********************* //
 function changeDisplay(value) 
 {
-    resultOutput.innerText = value; 
+    resultOutput.textContent = value; 
     changeACDisplay(value);
 }
 
 function changeACDisplay(value) 
 {
-    if (previousInput === "" && (currentInput === "0" || currentInput === "")) { eraseBtn.innerText = "AC"; } 
-    else if (value === "0") { eraseBtn.innerText = "AC"; }
-    else { eraseBtn.innerText = "C"; }
+    if (previousInput === "" && (currentInput === "0" || currentInput === "")) { eraseBtn.textContent = "AC"; } 
+    else if (value === "0") { eraseBtn.textContent = "AC"; }
+    else { eraseBtn.textContent = "C"; }
 }
 
 function handleDigit(digit) 
@@ -393,10 +393,10 @@ function pi()
 digitButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => handleDigit(index.toString()));
 });
-divideBtn.addEventListener("click", () => handleOperation("/"));
-multiplyBtn.addEventListener("click", () => handleOperation("*"));
-subtractBtn.addEventListener("click", () => handleOperation("-"));
-addBtn.addEventListener("click", () => handleOperation("+"));
+divideBtn.addEventListener("click", handleOperation.bind(this, "/"));
+multiplyBtn.addEventListener("click", handleOperation.bind(this, "*"));
+subtractBtn.addEventListener("click", handleOperation.bind(this, "-"));
+addBtn.addEventListener("click", handleOperation.bind(this, "+"));
 equalsBtn.addEventListener("click", compute);
 eraseBtn.addEventListener("click", clearAll);
 signBtn.addEventListener("click", toggleSign);
@@ -414,10 +414,10 @@ lnBtn.addEventListener("click", ln);
 logBtn.addEventListener("click", log);
 eBtn.addEventListener("click", e);
 unlemBtn.addEventListener("click", unlem);
-powerTwoBtn.addEventListener("click", () => power(2));
-powerThreeBtn.addEventListener("click", () => power(3));
+powerTwoBtn.addEventListener("click", power.bind(this, 2));
+powerThreeBtn.addEventListener("click", power.bind(this, 3));
 piBtn.addEventListener("click", pi);
-powerHalfBtn.addEventListener("click", () => power(0.5));
+powerHalfBtn.addEventListener("click", power.bind(this, 0.5));
 
 changeDisplay("0"); // start with 0 
 
