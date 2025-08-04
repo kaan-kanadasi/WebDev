@@ -51,110 +51,141 @@
 
 
       <main id="main-panel">
-        <section class="step-panel active" id="step-4"> <!-- strpe 1 has the active class which makes it visible at first-->
+        <section class="step-panel" id="step-1"> <!-- strpe 1 has the active class which makes it visible at first-->
           <div id="title-info">
-            <h1>Personal info</h1>
-            <p>Please provide your name, email address, and phone number.</p>
+            <h1 class="title">Personal info</h1>
+            <p class="title-info">Please provide your name, email address, and phone number.</p>
           </div>
-
           <div>
-            <div>
-              <p>Name</p>
-              <input placeholder="e.g. Stephen King">
+            <div class="main-container-text">
+              <label for="name">Name</label>
+              <input id="name" placeholder="e.g. Stephen King">
             </div>
-
-            <div>
-              <p>Email Address</p>
-              <input placeholder="e.g. stephenking@lorem.com">
+            <div class="main-container-text">
+              <label for="email-adress">Email Address</label>
+              <input id="email-adress" placeholder="e.g. stephenking@lorem.com">
             </div>
-
-            <div>
-              <p>Phone Number</p>
-              <input placeholder="e.g. +1 234 567 890">
+            <div class="main-container-text">
+              <label for="phone-number">Phone Number</label>
+              <input id="phhone-number" placeholder="e.g. +1 234 567 890">
             </div>
-          </div>
-
-          <div id="next-step-container">
-            <button id="next-step-btn">Next Step</button>
           </div>
         </section>
 
          <section class="step-panel" id="step-2">
-          <h1>Select your plan</h1>
-          <p>You have the option of monthly or yearly billing.</p>
-
+          <h1 class="title">Select your plan</h1>
+          <p class="title-info">You have the option of monthly or yearly billing.</p>
           <div class="plans">
-            <div class="plan">Arcade <span>$9/mo</span></div>
-            <div class="plan">Advanced <span>$12/mo</span></div>
-            <div class="plan">Pro <span>$15/mo</span></div>
+            <button class="plan">
+              <img src="assets/images/icon-arcade.svg" class="plan-image">
+              <div class="plan-text-price-container">
+                <p class="plan-text">Arcade</p>  
+                <p class="plan-price">$9/mo</p>
+              </div>
+            </button>
+            <button class="plan">
+              <img src="assets/images/icon-advanced.svg" class="plan-image">
+              <div class="plan-text-price-container">
+                <p class="plan-text">Advanced</p> 
+                <p class="plan-price">$12/mo</p>
+              </div>
+            </button>
+            <button class="plan">
+              <img src="assets/images/icon-pro.svg" class="plan-image">
+              <div class="plan-text-price-container">
+                <p class="plan-text">Pro</p> 
+                <p class="plan-price">$15/mo</p>
+              </div>
+            </button>
           </div>
-
           <div class="billing-toggle">
-            <span>Monthly</span>
-            <input type="checkbox" id="billing-switch">
-            <span>Yearly</span>
-          </div>
-
-          <div class="nav-buttons">
-            <button class="back-btn">Go Back</button>
-            <button class="next-btn">Next Step</button>
+            <p id="monthly-billing">Monthly</p>
+            <label class="switch">
+              <input type="checkbox" id="billing-switch">
+              <span class="slider"></span>
+            </label>
+            <p id="yearly-billing">Yearly</p>
           </div>
         </section>
 
         <!-- Step 3 -->
         <section class="step-panel" id="step-3">
-          <h1>Pick add-ons</h1>
-          <p>Add-ons help enhance your gaming experience.</p>
-
-          <div class="addons">
-            <label><input type="checkbox"> Online service <span>+$1/mo</span></label>
-            <label><input type="checkbox"> Larger storage <span>+$2/mo</span></label>
-            <label><input type="checkbox"> Customizable Profile <span>+$2/mo</span></label>
-          </div>
-
-          <div class="nav-buttons">
-            <button class="back-btn">Go Back</button>
-            <button class="next-btn">Next Step</button>
+          <h1 class="title">Pick add-ons</h1>
+          <p class="title-info">Add-ons help enhance your gaming experience.</p>
+          <div>
+            <label class="add-ons">
+              <input type="checkbox"> 
+              <div class="add-ons-text-container">
+                <p class="add-ons-title">Online service</p>
+                <p class="add-ons-description">Access to multiplayer games</p>
+              </div>
+              <span class="add-ons-price">+$1/mo</span>
+            </label>
+            <label class="add-ons">
+              <input type="checkbox"> 
+              <div class="add-ons-text-container">
+                <p class="add-ons-title">Larger storage</p> 
+                <p class="add-ons-description">Extra 1TB of cloude save</p>
+              </div>
+              <span class="add-ons-price">+$2/mo</span>
+            </label>
+            <label class="add-ons">
+              <input type="checkbox"> 
+              <div class="add-ons-text-container">
+                <p class="add-ons-title">Customizable Profile</p> 
+                <p class="add-ons-description">Custom theme on your profile</p>
+              </div>
+              <span class="add-ons-price">+$2/mo</span>
+            </label>
           </div>
         </section>
 
         <!-- Step 4 -->
-        <section class="step-panel" id="step-4">
-          <h1>Finishing up</h1>
-          <p>Double-check everything looks OK before confirming.</p>
-
-          <div class="summary">
+        <section class="step-panel active" id="step-4">
+          <h1 class="title">Finishing up</h1>
+          <p class="title-info">Double-check everything looks OK before confirming.</p>
+          <div id="summary">
             <!-- Dynamically add subscription and add-on selections here -->
+             <div id="summary-plan-type-container">
+                <div id="plan-type-time-change-container">
+                  <div id="plan-type-and-time">
+                    <p>Arcade</p>
+                    <p>(Monthyl)</p>
+                  </div>
+                  <p id="change-button-summary">Change</p>
+                </div>
+                <div id="summary-plan-type-price">0$</div>
+             </div>
+             <hr>
+             <div id="summary-add-ons-container"></div>
           </div>
-
           <div class="total">
             <p>Total (per month/year): <span id="total-amount">$0</span></p>
-          </div>
-
-          <div class="nav-buttons">
-            <button class="back-btn">Go Back</button>
-            <button class="confirm-btn">Confirm</button>
           </div>
         </section>
 
         <!-- Step 5 (Thank you page) -->
         <section class="step-panel" id="step-5">
-          <h1>Thank you!</h1>
+          <h1 class="title">Thank you!</h1>
           <p>
             Thanks for confirming your subscription! We hope you have fun 
             using our platform. If you ever need support, please feel free 
             to email us at <strong>support@loremgaming.com</strong>.
           </p>
         </section>
+
+          <div id="nav-buttons">
+              <button id="go-back-btn">Go Back</button>
+              <button id="next-step-btn">Next Step</button>
+          </div>
         </main>
     </div>
   </div>
+  <!-- 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Kaan Kanadasi</a>.
   </div>
+   -->
 </body>
 </html>
-
-
-

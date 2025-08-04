@@ -1,0 +1,497 @@
+:root 
+{
+    /* Layout breakpoints */
+    --mobile-width: 375px;
+    --desktop-width: 1440px;
+
+    /* Primary Colors */
+    --blue-950: hsl(213, 96%, 18%);
+    --purple-600: hsl(243, 100%, 62%);
+    --blue-300: hsl(228, 100%, 84%);
+    --blue-200: hsl(206, 94%, 87%);
+    --red-500: hsl(354, 84%, 57%);
+
+    /* Neutral Colors */
+    --grey-500: hsl(231, 11%, 63%);
+    --purple-200: hsl(229, 24%, 87%);
+    --blue-100: hsl(218, 100%, 97%);
+    --blue-50: hsl(231, 100%, 99%);
+    --white: hsl(0, 100%, 100%);
+
+    /* Typography */
+    --font-family: 'Ubuntu', sans-serif;
+    --font-size-p: 16px;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+}
+
+h1, h2, h3, p
+{
+    margin: 0;
+    padding: 0;
+}
+
+body 
+{
+    font-family: var(--font-family);
+    font-size: var(--font-size-p);
+    background-color: var(--blue-50);
+    color: var(--blue-950);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+p { font-size: var(--font-size-p); }
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+button 
+{
+    background: var(--purple-600);
+    color: var(--white);
+}
+
+.side-btn 
+{
+    width: 32px;            
+    height: 32px;    
+    border-radius: 50%;
+    padding: 10px;
+    border: 1px solid var(--white);
+    box-shadow: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+}
+
+.side-btn:hover
+{
+    background-color: var(--blue-200);
+    color: var(--blue-950);
+    border: none;
+    transition: ease-in-out 0.5s;
+}
+
+.sidebar-container 
+{
+    display: flex; 
+    align-items: center;
+    gap: 10px; 
+    padding-bottom: 30px;
+}
+
+.sidebar-container-text 
+{
+    display: flex;
+    flex-direction: column;  
+    line-height: 1.2;
+    gap: 2px;
+    padding-left: 5px;
+}
+
+.main-container-text label
+{
+    display:block;
+    margin: 10px 0 10px 0; /* rm default top-bottom mrgn */
+    padding: 0;
+}
+
+.main-container-text 
+{
+    margin-bottom: 20px;
+}
+
+.sidebar-container-text p 
+{
+    margin: 0; /* rm default top-bottom mrgn */
+    padding: 0;
+}
+
+.step 
+{
+    color: var(--grey-500);
+    font-weight: var(--font-weight-regular);
+}
+
+.info 
+{
+    color: var(--white);
+    font-weight: var(--font-weight-bold);
+}
+
+#container
+{
+    padding-top: 40px;
+    padding-left: 40px;
+}
+
+#sidebar 
+{
+    background-image: url(images/bg-sidebar-desktop.svg);
+    width: 270px;
+    height: 560px;
+    border-radius: 10px;
+}
+
+#inner-container 
+{
+    display: flex;
+    flex-direction: row;  
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+#outer-container 
+{
+    background-color: var(--blue-200);
+    padding: 50px;
+    width: 100%;
+    height: 100vh;   
+    display: flex;           
+    justify-content: center;    
+    align-items: center;   
+}
+
+#main-panel
+{
+    margin-left: 100px;
+    width: 60%;
+}
+
+#nav-buttons
+{
+    display: flex;
+    flex-direction: row;  
+    gap: 250px;
+    margin-top: 100px;
+    align-items: center;
+}
+
+#next-step-btn, #go-back-btn
+{
+    background: var(--blue-950);
+    color: var(--white);
+    font-weight: var(--font-weight-medium);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+}
+
+#next-step-btn 
+{
+    background: var(--blue-950);
+    color: var(--white);
+}
+#go-back-btn
+{
+    background: var(--white);
+    color: var(--blue-950);
+}
+
+.step-panel 
+{
+  display: none; /* Hide all steps by default */
+}
+
+.step-panel.active 
+{
+    display: flex; /* Show only the active step */
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+input 
+{
+  display: block;       
+  width: 100%; /* makes it span the container width */
+  box-sizing: border-box; /* includes padding and border in total width */
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid var(--grey-500);
+  transition: border-color 0.3s ease;
+  outline: none; /* there was a defualt outline */
+  padding-left: 20px; /* spacing inside palceholder */
+}
+
+input:hover, input:focus
+{
+    border: 1px solid var(--purple-600);
+    font-weight: var(--font-weight-bold);
+    color: var(--blue-950);
+}
+
+input::placeholder
+{
+    font-weight: var(--font-weight-medium);
+}
+
+.plans 
+{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.plan 
+{
+    display: flex;
+    border: 1px;
+    border-radius: 10px;
+    height: 150px;
+    width: 130px;
+    background-color: white;
+    color: var(--blue-300);
+    border: 1px solid var(--grey-500);
+    margin-bottom: 20px;
+    position: relative;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.plan-clicked 
+{
+    border-color: var(--blue-50);
+    background-color: var(--blue-100);
+    border: 1px solid var(--purple-600);
+}
+
+.plan:checked, .plan:hover
+{
+    border-color: var(--blue-50);
+    background-color: var(--blue-100);
+    border: 1px solid var(--purple-600);
+}
+
+.plan-image
+{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 20px;
+    left: 12px;
+}
+
+.title 
+{
+    margin-bottom: 10px
+}
+
+.title-info
+{
+    margin-bottom: 40px;
+    color: var(--grey-500);
+}
+
+.plan-text
+{
+    color: var(--blue-950);
+    font-weight: 600;
+    text-align: left;
+}
+
+.plan-price
+{
+    color: var(--grey-500);
+    font-weight: var(--font-weight-regular);
+    text-align: left;
+    font-size: 14px;
+}
+
+.plan-text-price-container
+{
+    margin-top: 80px;
+    margin-left: 5px;
+}
+
+.billing-toggle 
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--blue-100);
+    border-radius: 8px;
+    gap: 10px;
+    width: 77%;
+    padding: 5px 10px;
+}
+
+.switch 
+{
+    position: relative;
+    display: inline-block;
+    width: 40px;               
+    height: 20px;             
+    margin: 10px;
+}
+
+.switch input 
+{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider 
+{
+    position: absolute;
+    cursor: pointer;
+    /*for centering the slide*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--blue-950);
+    transition: 0.3s;
+    border-radius: 20px;
+}
+
+.slider::before 
+{
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 3.5px;
+    bottom: 3.5px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 100%;
+}
+
+.switch input:checked + .slider::before 
+{ 
+    transform: translateX(20px); 
+}
+
+#yearly-billing, #monthly-billing
+{
+    display: inline-block;
+    width: 80px; /* fixed width ensures it doesnt toggle to right or left whne font changes */
+    text-align: center;
+    transition: 0.2s ease-in;
+}
+
+.add-ons 
+{
+    border: 1px solid var(--blue-950);
+    width: 400px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--white);
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.add-ons:has(input:checked)
+{
+    border: 1px solid var(--purple-600);
+    background-color: var(--blue-50);   
+}
+
+.add-ons:hover
+{
+    border: 1px solid var(--purple-600);
+}
+
+
+.add-ons input
+{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+.add-ons-title
+{
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 3px;
+    color: var(--blue-950);
+}
+
+.add-ons-description 
+{
+    color: var(--grey-500);
+}
+
+.add-ons-price
+{
+    color: var(--purple-600);
+}
+
+.add-ons-text-container 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+#summary 
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--blue-100);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#plan-type-and-time 
+{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 5px;
+}
+
+#plan-type-time-change-container 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+#summary-plan-type-container 
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+hr 
+{
+    border: none;         
+    height: 1px;       
+    background-color: var(--grey-500); 
+    margin: 20px 0;    
+    width: 100%;
+}
+
+#change-button-summary 
+{
+    border-top: 1px solid var(--grey-500);
+    padding-top: 15px;
+}
