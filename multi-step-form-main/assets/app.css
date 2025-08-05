@@ -26,10 +26,21 @@
     --font-weight-bold: 700;
 }
 
+* 
+{
+    font-family: var(--font-family);
+}
+
 h1, h2, h3, p
 {
     margin: 0;
     padding: 0;
+}
+
+/* to avoid scroll */
+html, body {
+    overflow: hidden;
+    height: 100%;
 }
 
 body 
@@ -43,7 +54,10 @@ body
     min-height: 100vh;
 }
 
-p { font-size: var(--font-size-p); }
+p
+{
+    font-size: var(--font-size-p); 
+}
 
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); }
@@ -67,9 +81,11 @@ button
     align-items: center;
     justify-content: center;
     font-weight: var(--font-weight-bold);
+    pointer-events: none;
+    cursor: none;
 }
 
-.side-btn:hover
+.active-side-button
 {
     background-color: var(--blue-200);
     color: var(--blue-950);
@@ -104,6 +120,21 @@ button
 .main-container-text 
 {
     margin-bottom: 20px;
+    width: 450px;
+    height: 77px;
+}
+
+.input-error 
+{
+    border: 1px solid var(--red-500);
+}
+
+.error-label-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .sidebar-container-text p 
@@ -140,20 +171,21 @@ button
 
 #inner-container 
 {
+    position: relative;
     display: flex;
     flex-direction: row;  
     background-color: var(--white);
     padding: 20px;
     border-radius: 10px;
     width: 900px;
-    height: 600px;
+    height: 570px;
     align-items: center;
     margin-bottom: 150px;
 }
 
 #outer-container 
 {
-    background-color: var(--blue-200);
+    background-color: var(--blue-100);
     padding: 50px;
     width: 100%;
     height: 100vh;   
@@ -170,23 +202,28 @@ button
 
 #nav-buttons
 {
+    position: absolute;
+    bottom: 40px;
+    left: 360px;
+    right: 100px;
     display: flex;
     flex-direction: row;  
-    gap: 250px;
-    margin-top: 100px;
     align-items: center;
+    justify-content: space-between;
+    gap: 0;
 }
 
 #next-step-btn, #go-back-btn
 {
+    display: inline-flex;
     background: var(--blue-950);
     color: var(--white);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-bold);
     padding: 15px 30px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    display: inline-flex;
+    transition: 0.2s ease-in-out;
 }
 
 #next-step-btn 
@@ -194,9 +231,22 @@ button
     background: var(--blue-950);
     color: var(--white);
 }
+
+#next-step-btn:hover
+{
+    background: var(--purple-600);
+}
+
 #go-back-btn
 {
+    opacity: 0;  /* initially hidden */
     background: var(--white);
+    color: var(--grey-500);
+    pointer-events: none; /* no pointer events for the first page */
+}
+
+#go-back-btn:hover
+{
     color: var(--blue-950);
 }
 
@@ -259,6 +309,12 @@ input::placeholder
     position: relative;
     flex-direction: column;
     padding: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.plan-enlarged-for-yearly
+{
+    height: 170px;
 }
 
 .plan-clicked 
@@ -286,11 +342,15 @@ input::placeholder
 
 .title 
 {
+    top: 60px;
+    position: absolute;
     margin-bottom: 10px
 }
 
 .title-info
 {
+    top: 110px;
+    position: absolute;
     margin-bottom: 40px;
     color: var(--grey-500);
 }
@@ -314,6 +374,17 @@ input::placeholder
 {
     margin-top: 80px;
     margin-left: 5px;
+}
+
+.invisible-for-monthly 
+{
+    display: none;
+    color: var(--blue-950);
+    font-weight: var(--font-weight-regular);
+    font-size: small;
+    text-align: left;
+    margin: 5px 0;
+    transition: 0.2s ease-in-out;
 }
 
 .billing-toggle 
@@ -382,7 +453,12 @@ input::placeholder
     display: inline-block;
     width: 80px; /* fixed width ensures it doesnt toggle to right or left whne font changes */
     text-align: center;
-    transition: 0.2s ease-in;
+    transition: 0.2s ease-in-out;
+}
+
+#monthly-billing
+{
+    font-weight: bold;
 }
 
 .add-ons 
@@ -410,7 +486,6 @@ input::placeholder
 {
     border: 1px solid var(--purple-600);
 }
-
 
 .add-ons input
 {
@@ -455,6 +530,7 @@ input::placeholder
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
+    width: 410px;
 }
 
 #plan-type-and-time 
@@ -463,6 +539,14 @@ input::placeholder
     align-items: center;
     gap: 4px;
     margin-bottom: 5px;
+    color: var(--blue-950);
+    font-weight: var(--font-weight-bold);
+}
+
+#summary-plan-type-price
+{
+    color: var(--blue-950);
+    font-weight: var(--font-weight-bold);
 }
 
 #plan-type-time-change-container 
@@ -481,10 +565,31 @@ input::placeholder
     align-items: center;
 }
 
+.summary-add-ons-container
+{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.summary-add-ons-title 
+{
+    color: var(--grey-500);
+}
+
+#plan-price-container 
+{
+    display: flex;
+    flex-direction: row;
+    font-weight: var(--font-weight-bold);
+}
+
 hr 
 {
     border: none;         
-    height: 1px;       
+    height: 0.5px;       
     background-color: var(--grey-500); 
     margin: 20px 0;    
     width: 100%;
@@ -492,6 +597,68 @@ hr
 
 #change-button-summary 
 {
-    border-top: 1px solid var(--grey-500);
-    padding-top: 15px;
+    border-bottom: 2px solid var(--grey-500);
+    color: var(--grey-500);
+    cursor: pointer;
+}
+
+#change-button-summary:hover
+{
+    color: var(--purple-600);
+    border-bottom: 2px solid var(--purple-600);
+}
+
+.total p 
+{
+    font-weight: var(--font-weight-regular);
+    color: var(--grey-500);
+    flex-grow: 1;
+}
+
+.total 
+{
+    width: 350px;
+    padding: 0 40px;
+    display: flex;
+}
+
+.bigger
+{
+    font-size: larger;
+    color: var(--purple-600);
+    font-weight: var(--font-weight-bold);
+}
+
+#total-amount-per-time 
+{
+    font-size: larger;
+    color: var(--purple-600);
+    font-weight: var(--font-weight-bold);
+}
+
+#total-price-display 
+{
+    display: flex;
+    flex-direction: row;
+}
+
+#img-thank-you 
+{
+    height: 80px;
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+#step-5
+{
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-right: 50px;
+}
+
+#step-5 p 
+{
+    color: var(--grey-500);
+    text-align: center;
 }
