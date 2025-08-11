@@ -1,17 +1,24 @@
-* 
-{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-html 
-{
+html {
     line-height: 1;
     user-select: none;
+    font-family: 'Inter', sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 
-{
+h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
     font-weight: inherit;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
