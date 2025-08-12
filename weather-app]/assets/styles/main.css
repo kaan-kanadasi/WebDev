@@ -7,7 +7,7 @@
 html {
     line-height: 1;
     user-select: none;
-    font-family: 'Inter', 'Segoe UI', 'sans-serif';
+    font-family: 'JetBrains Mono Nerd Font', 'JetBrains Mono', monospace;
     scroll-behavior: smooth;
 }
 
@@ -112,12 +112,8 @@ body {
 }
 #current-weather-degree {
     font-size: 72px;
-    font-weight: 300;
-    margin-bottom: 10px;
-    background: black;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 400;
+    color: black;
 }
 
 #current-weather-degree-container {
@@ -125,26 +121,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     margin-top: 50px;
 }
 
-#current-weather-icon {
-    width: 100px;
-    height: 100px;
-    background: orange;
-    border-radius: 50%;
-    position: relative;
-    justify-content: center;
+/* Temperature and unit container */
+#current-weather-degree-container .horizontal-container {
+    display: flex;
     align-items: center;
-}
-
-#current-weather-icon::before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 200px;
+    justify-content: center;
+    gap: 8px;
 }
 
 #current-weather-description {
@@ -257,12 +242,26 @@ body {
     align-items: center;
 }
 
-/* Animation for weather icons */
-@keyframes float {
-    0%, 100% { transform: translateY(5px); }
-    50% { transform: translateY(-5px); }
+/* Weather Icons Styling */
+.weather-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
 }
-
 #current-weather-icon {
-    animation: float 3s ease-in-out infinite;
+    width: 200px;
+    height: 200px;
+    filter: 
+        drop-shadow(2px 2px 0 #333)
+        drop-shadow(4px 4px 0 #222)
+        drop-shadow(6px 6px 0 #111);
+}
+.weather-icon-large {
+    width: 48px;
+    height: 48px;
+}
+.weather-icon-small {
+    width: 16px;
+    height: 16px;
 }

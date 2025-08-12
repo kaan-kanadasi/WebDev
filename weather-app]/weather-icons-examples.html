@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Icons Examples</title>
+    <link rel="stylesheet" href="assets/styles/main.css"/>
+    <style>
+        .example-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .icon-item {
+            text-align: center;
+            padding: 16px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .icon-item img {
+            margin-bottom: 8px;
+        }
+        .icon-name {
+            font-size: 12px;
+            color: #666;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <h1>Weather Icons Usage Examples</h1>
+        
+        <div class="example-section">
+            <h2>1. Basic Usage with &lt;img&gt; tag</h2>
+            <p>This is the simplest way to use the icons:</p>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/celsius.svg" alt="Celsius" class="weather-icon">
+                    <div class="icon-name">celsius.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/fahrenheit.svg" alt="Fahrenheit" class="weather-icon">
+                    <div class="icon-name">fahrenheit.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/sunny.svg" alt="Sunny" class="weather-icon">
+                    <div class="icon-name">sunny.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/cloudy.svg" alt="Cloudy" class="weather-icon">
+                    <div class="icon-name">cloudy.svg</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>2. Different Sizes</h2>
+            <p>Use different CSS classes for different sizes:</p>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <img src="weather-icons-master/design/fill/animation-ready/rain.svg" alt="Rain" class="weather-icon-small">
+                <span>Small (16px)</span>
+                
+                <img src="weather-icons-master/design/fill/animation-ready/rain.svg" alt="Rain" class="weather-icon">
+                <span>Medium (24px)</span>
+                
+                <img src="weather-icons-master/design/fill/animation-ready/rain.svg" alt="Rain" class="weather-icon-large">
+                <span>Large (48px)</span>
+                
+                <img src="weather-icons-master/design/fill/animation-ready/rain.svg" alt="Rain" class="weather-condition-icon">
+                <span>Extra Large (64px)</span>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>3. Weather Condition Icons</h2>
+            <p>Common weather condition icons:</p>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/clear-day.svg" alt="Clear Day" class="weather-icon">
+                    <div class="icon-name">clear-day.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/clear-night.svg" alt="Clear Night" class="weather-icon">
+                    <div class="icon-name">clear-night.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/partly-cloudy-day.svg" alt="Partly Cloudy Day" class="weather-icon">
+                    <div class="icon-name">partly-cloudy-day.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/partly-cloudy-night.svg" alt="Partly Cloudy Night" class="weather-icon">
+                    <div class="icon-name">partly-cloudy-night.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/cloudy.svg" alt="Cloudy" class="weather-icon">
+                    <div class="icon-name">cloudy.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/overcast.svg" alt="Overcast" class="weather-icon">
+                    <div class="icon-name">overcast.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/rain.svg" alt="Rain" class="weather-icon">
+                    <div class="icon-name">rain.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/snow.svg" alt="Snow" class="weather-icon">
+                    <div class="icon-name">snow.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/thunderstorms.svg" alt="Thunderstorms" class="weather-icon">
+                    <div class="icon-name">thunderstorms.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/fog.svg" alt="Fog" class="weather-icon">
+                    <div class="icon-name">fog.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/haze.svg" alt="Haze" class="weather-icon">
+                    <div class="icon-name">haze.svg</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>4. Weather Information Icons</h2>
+            <p>Icons for weather information and measurements:</p>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/thermometer.svg" alt="Thermometer" class="weather-icon">
+                    <div class="icon-name">thermometer.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/thermometer-celsius.svg" alt="Thermometer Celsius" class="weather-icon">
+                    <div class="icon-name">thermometer-celsius.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/thermometer-fahrenheit.svg" alt="Thermometer Fahrenheit" class="weather-icon">
+                    <div class="icon-name">thermometer-fahrenheit.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/wind.svg" alt="Wind" class="weather-icon">
+                    <div class="icon-name">wind.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/humidity.svg" alt="Humidity" class="weather-icon">
+                    <div class="icon-name">humidity.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/uv-index.svg" alt="UV Index" class="weather-icon">
+                    <div class="icon-name">uv-index.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/pressure-high.svg" alt="High Pressure" class="weather-icon">
+                    <div class="icon-name">pressure-high.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/pressure-low.svg" alt="Low Pressure" class="weather-icon">
+                    <div class="icon-name">pressure-low.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/sunrise.svg" alt="Sunrise" class="weather-icon">
+                    <div class="icon-name">sunrise.svg</div>
+                </div>
+                <div class="icon-item">
+                    <img src="weather-icons-master/design/fill/animation-ready/sunset.svg" alt="Sunset" class="weather-icon">
+                    <div class="icon-name">sunset.svg</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>5. JavaScript Usage Example</h2>
+            <p>How to dynamically set weather icons in JavaScript:</p>
+            <pre><code>
+// Example function to set weather icon based on condition
+function setWeatherIcon(condition) {
+    const iconMap = {
+        'clear-day': 'clear-day.svg',
+        'clear-night': 'clear-night.svg',
+        'partly-cloudy-day': 'partly-cloudy-day.svg',
+        'partly-cloudy-night': 'partly-cloudy-night.svg',
+        'cloudy': 'cloudy.svg',
+        'overcast': 'overcast.svg',
+        'rain': 'rain.svg',
+        'snow': 'snow.svg',
+        'thunderstorms': 'thunderstorms.svg',
+        'fog': 'fog.svg',
+        'haze': 'haze.svg'
+    };
+    
+    const iconElement = document.getElementById('current-weather-icon');
+    const iconPath = `weather-icons-master/design/fill/animation-ready/${iconMap[condition]}`;
+    iconElement.innerHTML = `&lt;img src="${iconPath}" alt="${condition}" class="weather-condition-icon"&gt;`;
+}
+
+// Usage example
+setWeatherIcon('clear-day');
+            </code></pre>
+        </div>
+
+        <div class="example-section">
+            <h2>6. Available Icon Categories</h2>
+            <p>The weather-icons-master package includes icons for:</p>
+            <ul>
+                <li><strong>Weather Conditions:</strong> clear-day, clear-night, partly-cloudy-day, partly-cloudy-night, cloudy, overcast, rain, snow, thunderstorms, fog, haze, etc.</li>
+                <li><strong>Temperature Units:</strong> celsius.svg, fahrenheit.svg</li>
+                <li><strong>Weather Measurements:</strong> thermometer.svg, wind.svg, humidity.svg, uv-index.svg, pressure-high.svg, pressure-low.svg</li>
+                <li><strong>Time-based:</strong> sunrise.svg, sunset.svg, moonrise.svg, moonset.svg</li>
+                <li><strong>Special Conditions:</strong> tornado.svg, hurricane.svg, lightning-bolt.svg, etc.</li>
+            </ul>
+        </div>
+
+        <div class="example-section">
+            <h2>7. Troubleshooting</h2>
+            <p>If icons are not showing:</p>
+            <ul>
+                <li>Check that the path to the SVG file is correct relative to your HTML file</li>
+                <li>Verify that the SVG file exists in the specified location</li>
+                <li>Make sure the file permissions allow the web server to read the files</li>
+                <li>Check the browser's developer console for any 404 errors</li>
+                <li>Try using an absolute path or moving the icons to your assets folder</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
