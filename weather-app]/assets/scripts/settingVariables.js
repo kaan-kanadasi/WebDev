@@ -37,3 +37,66 @@ const valid_langs_obj =
 
 const valid_langs_arr = Object.keys(valid_langs_obj);
 const valid_units_arr = ['metric', 'imperial'];
+
+const emoji_map = {
+  'clear-day': '☀️',
+  'clear-night': '🌙',
+  'partly-cloudy-day': '⛅',
+  'partly-cloudy-night': '☁️',
+  'cloudy': '☁️',
+  'rain': '🌧️',
+  'snow': '❄️',
+  'sleet': '🌨️',
+  'fog': '🌫️',
+  'wind': '💨',
+  'thunder-rain': '⛈️',
+  'thunder-showers-day': '⛈️',
+  'thunder-showers-night': '⛈️',
+  'showers-day': '🌦️',
+  'showers-night': '🌧️',
+  'rain-snow': '🌨️',
+  'snow-sleet': '🌨️',
+  'snow-showers-day': '🌨️',
+  'snow-showers-night': '🌨️'
+};
+
+const dailyDisplayArray = 
+[
+  { day: "Today", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""},
+  { day: "", tempMin: 0, tempMax: 0, icon: ""}
+];
+
+const hourlyData = [
+  { time: "Now", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 },
+  { time: "", temp: 0, icon: "", precipitation: 0 }
+];

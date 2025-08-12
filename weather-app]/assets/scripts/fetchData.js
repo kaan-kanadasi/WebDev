@@ -14,6 +14,24 @@ async function fetchWeatherJsonData(url)
         throw error;
     }
 }
+
+// Backend API functions
+async function fetchFromBackend(endpoint, params = {}) {
+    try {
+        const queryString = new URLSearchParams(params).toString();
+        const url = `http://localhost:3000/api/${endpoint}?${queryString}`;
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`Backend API error: ${response.status}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.log('Backend fetch error:', error.message);
+        throw error;
+    }
+}
 async function fetchLocationJsonData(url) 
 {
     try 
@@ -71,7 +89,7 @@ async function getLocationData_ByGeolocation() {
     }
 }
 
-async function getWeatherData(lat, lon, unit, lang, include = "current") 
+async function getWeatherData(lat, lon, unit = 'metric', lang = 'en', include = "current") 
 {
     if(!valid_units_arr.includes(unit)) throw new Error(`Unit must be one of: ${valid_units_arr.join(", ")}`);
     if(!valid_langs_arr.includes(lang)) throw new Error(`Language must be one of: ${Object.values(valid_langs_obj).join(", ")}`);
@@ -85,13 +103,17 @@ async function getWeatherData_CurrentTime(lat, lon, unit, lang)
 }
 async function getWeatherData_24Hours(lat, lon, unit, lang)
 {
+    /**example output: 20 - current weather index that the hourlyWeatherForTwoDays.datetime has then 20 + 25 would be the last index*/
+    const hourIndexCurrent = new Date().getHours(); 
+    const hourIndexTomarrow = hourIndexCurrent + 25;
     const weather_data = await getWeatherData(lat, lon, unit, lang, "hours");
-    return weather_data.days[0].hours;
+    const hourlyWeatherForTwoDays = [...weather_data.days[0].hours, ...weather_data.days[1].hours];
+    return hourlyWeatherForTwoDays.slice(hourIndexCurrent, hourIndexTomarrow);
 }
-async function getWeatherData_Next15Days(lat, lon, unit, lang)
+async function getWeatherData_Next10Days(lat, lon, unit, lang)
 {
     const weather_data = await getWeatherData(lat, lon, unit, lang, "days");
-    return weather_data.days;
+    return weather_data.days.slice(0, 10);
 }
 
 async function getWeatherForLocation_ByCitySearch(functionName, unit, lang, city_name, state_code, country_code, limit) 
@@ -105,7 +127,7 @@ async function getWeatherForLocation_CurrentTime_ByCitySearch(unit, lang, city_n
 }
 async function getWeatherForLocation_Next15Days_ByCitySearch(unit, lang, city_name, state_code, country_code, limit) 
 {
-    return getWeatherForLocation_ByCitySearch(getWeatherData_Next15Days, unit, lang, city_name, state_code, country_code, limit) 
+    return getWeatherForLocation_ByCitySearch(getWeatherData_Next10Days, unit, lang, city_name, state_code, country_code, limit) 
 }
 async function getWeatherForLocation_24Hours_ByCitySearch(unit, lang, city_name, state_code, country_code, limit) 
 {
@@ -133,26 +155,9 @@ async function getWeatherForLocation_24Hours_ByGeolocation(unit, lang)
 {
     return getWeatherForLocation_ByGeolocation(getWeatherData_24Hours, unit, lang);
 }
-async function getWeatherForLocation_Next15Days_ByGeolocation(unit, lang)  
+async function getWeatherForLocation_Next10Days_ByGeolocation(unit, lang)  
 {
-    return getWeatherForLocation_ByGeolocation(getWeatherData_Next15Days, unit, lang);
-}
-
-async function createWeatherArray_Next7Days(functionName_createWeatherArray) 
-{
-    const arr_fifteen = await functionName_createWeatherArray("metric","en");
-    let arr_seven = [];
-    for(let i=0; i < 7; i++)
-        arr_seven[i] = arr_fifteen[i];
-    return arr_seven;
-}
-function createWeatherArray_Next7Days_ByGeolocation() 
-{
-    return createWeatherArray_Next7Days(getWeatherForLocation_Next15Days_ByGeolocation);
-}
-function createWeatherArray_Next7Days_ByCitySearch() 
-{
-    return createWeatherArray_Next7Days(getWeatherForLocation_Next15Days_ByCitySearch);
+    return getWeatherForLocation_ByGeolocation(getWeatherData_Next10Days, unit, lang);
 }
 
 
@@ -167,7 +172,7 @@ function createWeatherArray_Next7Days_ByCitySearch()
 
 async function test() {
     try {
-        const weather = await createWeatherArray_Next7Days_ByGeolocation();
+        const weather = await getWeatherForLocation_Next10Days_ByGeolocation('metric', 'en');
         console.log(JSON.stringify(weather, null, 2));
     } catch (err) {
         console.error(err);
