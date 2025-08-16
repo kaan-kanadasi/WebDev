@@ -328,30 +328,14 @@ body {
 }
 
 /* Font Weight Utility Classes */
-.font-thin {
-    font-weight: 100;
-}
-.font-extra-light {
-    font-weight: 200;
-}
-.font-light {
-    font-weight: 300;
-}
-.font-regular {
-    font-weight: 400;
-}
-.font-medium {
-    font-weight: 500;
-}
-.font-semi-bold {
-    font-weight: 600;
-}
-.font-bold {
-    font-weight: 700;
-}
-.font-extra-bold {
-    font-weight: 800;
-}
+.font-thin { font-weight: 100; }
+.font-extra-light { font-weight: 200; }
+.font-light { font-weight: 300; }
+.font-regular { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semi-bold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extra-bold { font-weight: 800; }
 
 /* Weather Icons Styling */
 .weather-icon {
@@ -378,7 +362,6 @@ body {
     height: 16px;
 }
 
-
 /* ICONS */
 #settings-icon {
   width: 40px;
@@ -393,28 +376,25 @@ body {
   user-select: none;
   transition: background-color 0.5s ease-in-out;
 }
-#settings-icon::before,
-#settings-icon::after {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  transition: 0.5s ease-in-out;
-}
+
 #settings-icon::before {
-    content: "\2261"; /* initial checkbox */
-    transform: translate(-50%, -50%) scale(0.8);
+  content: "⚙";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  transition: transform 0.6s ease-in-out;
 }
-#settings-icon::after {
-    transform: translate(-50%, -50%) scale(1);
-}
-#settings-icon:hover::before {
-    transform: translate(-50%, -50%) scale(1.2);
-}
-#settings-icon:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-}
+
 #settings-icon:hover {
   background-color: rgb(21, 25, 34);
 }
+
+#settings-icon:hover::before {
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
 #settings-icon.checked {
   background-color: rgb(21, 25, 34);
 }
