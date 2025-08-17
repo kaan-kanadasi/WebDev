@@ -1,4 +1,6 @@
-/* Font Face Declarations */
+/* ------- */
+/* FONTS */
+/* ------- */
 @font-face {
     font-family: 'JetBrains Mono';
     src: url('../../fonts/webfonts/JetBrainsMono-Thin.woff2') format('woff2');
@@ -56,50 +58,83 @@
     font-display: swap;
 }
 
+/* ------- */
+/* GLOBAL VARIABLES */
+/* ------- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 html {
     line-height: 1;
     user-select: none;
     font-family: 'JetBrains Mono', monospace;
     scroll-behavior: smooth;
 }
-
 h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
     font-weight: inherit;
 }
-
-#settings-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 99;
-  display: none;
+body {
+    min-height: 100vh;
+    background: rgb(46, 56, 75);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: black;
+    overflow-x: hidden;
 }
 
+/* ------- */
+/* SETTINGS */
+/* ------- */
+#settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 99;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
 #settings-overlay.checked {
-  display: flex; /* use flex to center child */
-  justify-content: center;
-  align-items: center;
+    opacity: 1;
+    visibility: visible;
+    display: flex;
 }
 
 #settings-main-container {
-  width: 1200px;
-  height: 800px;
+  width: 700px;
+  height: 700px;
   background-color: rgb(0, 0, 0);
   border-radius: 3px;
   padding: 30px;
   z-index: 100; 
   border: 1px solid #4BBEE3;
   color: aliceblue;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+#settings-main-container.checked {
+  transform: scale(1);
+}
+
+#settings-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#settings-header-container h1 {
+    font-size:larger;
 }
 
 #settings-close-btn {
@@ -111,21 +146,9 @@ h1, h2, h3, h4, h5, h6 {
     color: aliceblue;
     cursor: pointer;
 }
-
 #settings-close-btn:hover {
     color: #4BBEE3;
     transition: color 0.5s ease-in-out;
-}
-
-
-body {
-    min-height: 100vh;
-    background: rgb(46, 56, 75);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    color: black;
-    overflow-x: hidden;
 }
 
 #main-container
@@ -135,8 +158,6 @@ body {
     height: calc(100vh - 40px);
     border-radius: 40px;
 }
-
-/* Main Weather Section */
 #main-weather {
     flex: 1;
     width: 900px;
@@ -204,13 +225,8 @@ body {
 }
 
 #current-weather-degree {
-    font-size: 72px;
-    font-weight: 300; /* Using Light weight for the main temperature */
+    font-size: 70px;
     color: black;
-    filter: 
-        drop-shadow(2px 2px 0 #bbb)
-        drop-shadow(4px 4px 0 #888)
-        drop-shadow(6px 6px 0 #777);
 }
 
 #current-weather-degree-container {
@@ -218,7 +234,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 /* Temperature and unit container */
@@ -228,10 +244,9 @@ body {
     justify-content: center;
     gap: 8px;
 }
-
 #current-weather-description {
     font-size: 18px;
-    font-weight: 500; /* Medium weight for weather description */
+    font-weight: 500; 
 }
 
 /* Hourly Scroll Bar */
@@ -244,7 +259,6 @@ body {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
-
 #hourly-scroll-bar::-webkit-scrollbar {
     display: none;
 }
@@ -263,7 +277,6 @@ body {
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .hourly-data:hover {
     background: rgba(255, 255, 255, 0.2);
 }
@@ -278,7 +291,6 @@ body {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
-
 .daily-data {
     min-width: 100px;
     height: 140px;
@@ -293,18 +305,15 @@ body {
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .daily-data:hover {
     background: rgba(255, 255, 255, 0.2);
 }
-
 /* Current Weather Info */
 #current-weather-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
 }
-
 .crr-weather-info-container {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 16px;
@@ -312,12 +321,13 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
-
 .crr-weather-info-container:hover {
     background: rgba(255, 255, 255, 0.15);
 }
 
+/* ------- */
 /* Utility Classes */
+/* ------- */
 .vertical-container {
     display: flex;
     flex-direction: column;
@@ -326,7 +336,6 @@ body {
     display: flex;
     align-items: center;
 }
-
 /* Font Weight Utility Classes */
 .font-thin { font-weight: 100; }
 .font-extra-light { font-weight: 200; }
@@ -337,7 +346,10 @@ body {
 .font-bold { font-weight: 700; }
 .font-extra-bold { font-weight: 800; }
 
-/* Weather Icons Styling */
+/* ------- */
+/* ICONS */
+/* ------- */
+/* Weather Icon*/
 .weather-icon {
     width: 24px;
     height: 24px;
@@ -352,7 +364,6 @@ body {
         drop-shadow(4px 4px 0 #222)
         drop-shadow(6px 6px 0 #111);
 }
-
 .weather-icon-large {
     width: 48px;
     height: 48px;
@@ -361,8 +372,7 @@ body {
     width: 16px;
     height: 16px;
 }
-
-/* ICONS */
+/* Settings Icon */
 #settings-icon {
   width: 40px;
   height: 40px;
@@ -376,7 +386,6 @@ body {
   user-select: none;
   transition: background-color 0.5s ease-in-out;
 }
-
 #settings-icon::before {
   content: "⚙";
   position: absolute;
@@ -386,15 +395,12 @@ body {
   transform-origin: center;
   transition: transform 0.6s ease-in-out;
 }
-
 #settings-icon:hover {
   background-color: rgb(21, 25, 34);
 }
-
 #settings-icon:hover::before {
   transform: translate(-50%, -50%) rotate(180deg);
 }
-
 #settings-icon.checked {
   background-color: rgb(21, 25, 34);
 }
