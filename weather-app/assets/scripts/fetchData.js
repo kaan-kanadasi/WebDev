@@ -7,7 +7,6 @@ const DEFAULT_UNIT = process.env.DEFAULT_UNIT;
 const DEFAULT_LANG = process.env.DEFAULT_LANG;
 const LIMIT_LOCATION_OBJ = process.env.LIMIT_LOCATION_OBJ;
 
-
 async function fetchWeatherJsonData(url) 
 {
     try 
@@ -49,7 +48,7 @@ async function fetchLocationJsonData(url)
 
 function getLocationData_ByCitySearch(city_name, state_code, country_code, limit) 
 {
-    const geocoding_url = `${CONFIG.LOCATION_BASE_URL}/geo/1.0/direct?q=${city_name},${state_code},${country_code}&limit=${limit}&appid=${CONFIG.LOCATION_API_KEY}`;
+    const geocoding_url = `${LOCATION_BASE_URL}/geo/1.0/direct?q=${city_name},${state_code},${country_code}&limit=${limit}&appid=${LOCATION_API_KEY}`;
     return fetchLocationJsonData(geocoding_url);
 }
 
@@ -86,7 +85,7 @@ async function getWeatherData(lat, lon, unit = 'metric', lang = 'en', include = 
 {
     if(!valid_units_arr.includes(unit)) throw new Error(`Unit must be one of: ${valid_units_arr.join(", ")}`);
     if(!valid_langs_arr.includes(lang)) throw new Error(`Language must be one of: ${Object.values(valid_langs_obj).join(", ")}`);
-    const weather_url = `${CONFIG.WEATHER_BASE_URL}${lat},${lon}?unitGroup=${unit}&lang=${lang}&include=${include}&key=${CONFIG.WEATHER_API_KEY}`;
+    const weather_url = `${WEATHER_BASE_URL}${lat},${lon}?unitGroup=${unit}&lang=${lang}&include=${include}&key=${WEATHER_API_KEY}`;
     return await fetchWeatherJsonData(weather_url);
 }
 async function getWeatherData_CurrentTime(lat, lon, unit, lang) 
@@ -190,6 +189,6 @@ test();
 
 let lat = 37.055176;
 let lon= 35.282551;
-getWeatherData(lat, lon, CONFIG.DEFAULT_UNIT, CONFIG.DEFAULT_LANG);
-getWeatherForLocation_24Hours_ByGeolocation(CONFIG.DEFAULT_UNIT, CONFIG.DEFAULT_LANG);
+getWeatherData(lat, lon, DEFAULT_UNIT, DEFAULT_LANG);
+getWeatherForLocation_24Hours_ByGeolocation(DEFAULT_UNIT, DEFAULT_LANG);
 */
