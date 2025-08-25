@@ -38,26 +38,25 @@ const valid_langs_obj =
 const valid_langs_arr = Object.keys(valid_langs_obj);
 const valid_units_arr = ['metric', 'imperial'];
 
+const ICON_BASE = '../../weather-icons-master/design/fill/animation';
+
 const emoji_map = {
-  'clear-day': '☀️',
-  'clear-night': '🌙',
-  'partly-cloudy-day': '⛅',
-  'partly-cloudy-night': '☁️',
-  'cloudy': '☁️',
-  'rain': '🌧️',
-  'snow': '❄️',
-  'sleet': '🌨️',
-  'fog': '🌫️',
-  'wind': '💨',
-  'thunder-rain': '⛈️',
-  'thunder-showers-day': '⛈️',
-  'thunder-showers-night': '⛈️',
-  'showers-day': '🌦️',
-  'showers-night': '🌧️',
-  'rain-snow': '🌨️',
-  'snow-sleet': '🌨️',
-  'snow-showers-day': '🌨️',
-  'snow-showers-night': '🌨️'
+    'clear-day': 'clear-day',
+    'clear-night': 'clear-night',
+    'partly-cloudy-day': 'partly-cloudy-day',
+    'partly-cloudy-night': 'partly-cloudy-night',
+    'cloudy': 'cloudy',
+    'rain': 'rain',
+    'snow': 'snow',
+    'fog': 'fog',
+    'wind': 'wind',
+    'thunder-rain': 'thunder-rain',
+    'thunder-showers-day': 'thunder-showers-day',
+    'thunder-showers-night': 'thunder-showers-night',
+    'showers-day': 'showers-day',
+    'showers-night': 'showers-night',
+    'snow-showers-day': 'snow-showers-day',
+    'snow-showers-night': 'snow-showers-night'
 };
 
 const dailyDisplayArray = 

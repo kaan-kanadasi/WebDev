@@ -15,23 +15,6 @@ async function fetchWeatherJsonData(url)
     }
 }
 
-// Backend API functions
-async function fetchFromBackend(endpoint, params = {}) {
-    try {
-        const queryString = new URLSearchParams(params).toString();
-        const url = `http://localhost:3000/api/${endpoint}?${queryString}`;
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`Backend API error: ${response.status}`);
-        }
-        
-        return await response.json();
-    } catch (error) {
-        console.log('Backend fetch error:', error.message);
-        throw error;
-    }
-}
 async function fetchLocationJsonData(url) 
 {
     try 
@@ -65,9 +48,9 @@ async function getLocationData_ByGeolocation() {
     {
         if(!navigator.geolocation) throw new Error("Geolocation is not supported by this browser.");
         
-        const geoLocation = await new Promise((resolve, reject) => {
+        const geoLocation = await new Promise((resolve, reject) => { /* Using geolocation API */
             navigator.geolocation.getCurrentPosition(
-                position => 
+                position => /* Success Call Back */
                 {
                     const geoLocation = 
                     {
@@ -77,7 +60,7 @@ async function getLocationData_ByGeolocation() {
                     console.log("Geolocation:", geoLocation);
                     resolve(geoLocation)
                 }, 
-                (error) => reject(error.message)
+                error => reject(new Error(error.message)) /* Error Call Back */
             )
         });
         return geoLocation;
