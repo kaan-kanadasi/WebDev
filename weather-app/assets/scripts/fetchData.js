@@ -3,9 +3,9 @@ const LOCATION_API_KEY = process.env.LOCATION_API_KEY;
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const LOCATION_BASE_URL = process.env.LOCATION_BASE_URL;
 const WEATHER_BASE_URL = process.env.WEATHER_BASE_URL;
-const DEFAULT_UNIT = process.env.DEFAULT_UNIT;
-const DEFAULT_LANG = process.env.DEFAULT_LANG;
-const LIMIT_LOCATION_OBJ = process.env.LIMIT_LOCATION_OBJ;
+const DEFAULT_UNIT = 'metric';
+const DEFAULT_LANG = 'en';
+const LIMIT_LOCATION_OBJ = 1;
 
 async function fetchWeatherJsonData(url) 
 {
