@@ -48,4 +48,23 @@ fn main()
     for (x,y) in array_p.iter() {
         // ...
     }
+
+
+    // there are 6 types of strings in rust lib
+    // 
+    // both barrowed string slice and string contain pointer to some bytes and a length 
+    // this is a barrowed string slice -- it cannot be modified || it is a subset of the String type
+    let barrowed_string_type = 'str'; 
+    // this is a String -- it can be modified 
+    // Strings also contian a capacity that may be higher than what is used
+    let string_type1 = 'str'.to_string();
+    let string_type2 = String::from('str');
+
+
+    // you cannot directly index a String with [index], Rust strings are UTF-8 encoded and a single char might take more than one byte
+    let s = String::from("hello");
+    let slice = &s[0..2]; // takes bytes 0 and 1
+    let ch = s.chars().nth(1); // gets the second char - e
+    let b = s.as_bytes()[1]; // 101 (ASCII value of 'e') 
+    println!("{}", slice); // prints "he"
 }
