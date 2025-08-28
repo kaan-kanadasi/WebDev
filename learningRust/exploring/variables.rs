@@ -11,4 +11,41 @@ fn main()
     let arr = [1,2,3];
     let arr_same: [u8, 3] = [1,2,3]; // fixed to the size of 32 
     let arr_3 = [0; 3]; // 3, 3, 3
+
+    if num == 5 {
+        msg = "five";
+    } else if num == 4 {
+        msg = "four";
+    } else {
+        msg = "three";
+    }
+
+    msg = if num == 5 {
+        "five"
+    } else if num == 4 {
+        "four"
+    } else {
+        "three"
+    }
+
+    'bob:loop {
+        loop {
+            break 'bob;
+        }
+    }
+
+    for num in [1, 2, 3].iter() {
+        // ...
+    }
+    for num in 0..50 {
+        // ...
+    }
+    for num in 0..=50 {
+        // ...
+    }
+
+    let array_p = [(1,2), (3,4)];
+    for (x,y) in array_p.iter() {
+        // ...
+    }
 }
