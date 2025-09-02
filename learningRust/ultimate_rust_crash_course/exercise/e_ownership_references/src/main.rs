@@ -48,3 +48,35 @@ fn main() {
     // bedazzle(&mut material);
     // println!("Wow! Now the material is `{}`!", material);
 }
+
+fn inspect(&arg) {
+    if arg.ends_with("s") {
+        println!("plural");
+    } else {
+        println!("singular");
+    }
+}
+
+fn change(arg) {
+    if !arg.ends_with("s") {
+        arg = arg.push_str("s");
+    } 
+}
+
+fn eat(arg) {
+    if arg.starts_with("b") {
+        return true;
+    } else {
+        return false;
+    }
+}
+    // 3. Write a function `eat` that accepts ownership of (consumes) a String and returns a bool
+    // indicating whether or not the String both starts with a "b" AND contains an "a".
+    // Hint 1: use `.starts_with("b")` and `.contains("a")`
+    // Hint 2: `&&` is the boolean "AND" operator
+    //
+    //if eat(arg) {
+    //    println!("Might be bananas");
+    //} else {
+    //    println!("Not bananas");
+    //}

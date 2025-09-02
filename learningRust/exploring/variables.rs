@@ -49,7 +49,6 @@ fn main()
         // ...
     }
 
-
     // there are 6 types of strings in rust lib
     // 
     // both barrowed string slice and string contain pointer to some bytes and a length 
@@ -60,11 +59,42 @@ fn main()
     let string_type1 = 'str'.to_string();
     let string_type2 = String::from('str');
 
-
     // you cannot directly index a String with [index], Rust strings are UTF-8 encoded and a single char might take more than one byte
     let s = String::from("hello");
     let slice = &s[0..2]; // takes bytes 0 and 1
     let ch = s.chars().nth(1); // gets the second char - e
     let b = s.as_bytes()[1]; // 101 (ASCII value of 'e') 
     println!("{}", slice); // prints "he"
+
+
+    // OWNERSHIP
+    // each value has an owner
+    // only one owner
+    // value gets dropped if its owner goes out of scope
+    // -------------------------------------------------
+    let s1 = String::from("abc");
+    let s3 = String::from("dfg");
+    let s2 = s1;
+    println!("{}", s1); // -> error
+    let s3 = s2.clone(); // explicitly clone the heap data
+    println!("{}", s2); // works because s2 still ownes its data
+
+    let int_x = 5;    // i32 is Copy
+    let int_y = int_x;    // x is automatically copied into y
+    println!("x = {}, y = {}", x, y); // x is still valid
+
+    // references defualt to immutable even when the data being references is mutable
+    let mut ss_false = String:format("fo");
+    let mut ss_correct = String:format("fofo");
+    ss_false = do_stuff(ss_false);
+    ss_correct = do_stuff_ref(&mut ss_correct);
+    println!("{}", ss_false) // ERROR -> the value of ss is pased to the function do_stuff and not returning it 
+    println!("{}", ss_correct) // works 
+    fn do_stuff(ss: String) {
+        // smth
+    }
+    fn do_stuff_ref(ss: &mut String) {
+        s.insert_str(0, "Hi, ");
+        *s = String:format("foofoo"); // dereferencing
+    }
 }
