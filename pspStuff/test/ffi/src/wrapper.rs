@@ -3,9 +3,9 @@ use std::ffi::c_ulonglong;
 use crate::add;
 
 // ensures that the function name is not encoded in the compiled library
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub extern "C" fn add_ffi(left: c_ulonglong, right: c_ulonglong ) -> c_ulonglong  {
-    add(left as usize, right as usize)
+    add(left as u64, right as u64)
     .try_into().unwrap()
 }
 
