@@ -1,3 +1,5 @@
+use std::fs::File;
+
 fn main() 
 {
     let x = 5_u16;
@@ -20,6 +22,7 @@ fn main()
         msg = "three";
     }
 
+    // if is a 
     msg = if num == 5 {
         "five"
     } else if num == 4 {
@@ -96,5 +99,88 @@ fn main()
     fn do_stuff_ref(ss: &mut String) {
         s.insert_str(0, "Hi, ");
         *s = String:format("foofoo"); // dereferencing
+    }
+
+
+    
+    // structs 
+    struct RedFox {
+        enemy: bool,
+        life: u32,
+    }
+
+    fn print_noise<T: Noisy>(item: T) {
+        println!("{}", item.get_noise());
+    }
+
+    trait Noisy for u8 {
+        fn get_noise(&self) -> &str;
+    }
+
+    impl Noisy for RedFox {
+        fn get_noise(&self) -> &str { "meow" }
+    }
+
+    print_noise(5_u8);
+
+    // traits can inherit from other traits
+
+
+    // stuff
+    let mut v: Vec<i32> = Vec::new();
+    v.push(2);
+
+    let mut h: HashMap<u8, bool> = HashMap::new();
+    h.insert(5, true);
+    let have_five = h.remove(&5).unwrap();
+
+
+
+    // enums
+    enum Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+    }
+
+    enum Option<T> {
+        Some(T),
+        None,
+    }
+
+    let mut x: Option<i32> = None;
+    x = Some(5);
+    x.is_some(); // true
+    x.is_none(); // false
+
+    if let Some(x) = my_variable {
+        println!("value is {}", x);
+    }
+
+    match my_variable {
+        Some(x) => {
+            println!("value is {}", x);
+        },
+        None => {
+            println!("no value");
+        }
+    }
+
+    let x = match my_variable {
+        Some(x) => x.squared(),
+        None => 42,
+    };
+
+    #[must_use]
+    enum Result<T, E> {
+        Ok(T),
+        Err(E),
+    }
+
+    let res = File::open("foo");
+    math res {
+        Ok(f) => {},
+        Err(e) => {},
     }
 }
