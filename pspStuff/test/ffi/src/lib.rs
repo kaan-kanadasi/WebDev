@@ -14,3 +14,20 @@ mod tests {
         assert_eq!(result, 4);
     }
 }
+
+pub fn do_something_to_string(input: &str) -> String {
+    format!("You gave me: {}", input)
+}
+
+pub struct Point {
+    pub x: f64,
+    pub y: f64,
+}
+
+impl Point {
+    pub fn distance_to(&self, p2: &Point) -> f64 {
+        let dx = (p2.x - self.x).abs();
+        let dy = (p2.y - self.y).abs();
+        (dx * dx + dy * dy).sqrt()
+    }
+}

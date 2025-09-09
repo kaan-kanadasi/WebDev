@@ -1,12 +1,12 @@
 use std::ffi::c_ulonglong;
-
 use crate::add;
 
 // ensures that the function name is not encoded in the compiled library
-#[unsafe(no_mangle)]
+#[no_mangle]
 pub extern "C" fn add_ffi(left: c_ulonglong, right: c_ulonglong ) -> c_ulonglong  {
     add(left as u64, right as u64)
-    .try_into().unwrap()
+    .try_into()
+    .expect("Addition result exceeds c_ulonglong range")
 }
 
 // pub extern "C" — declares that the function is part of the public interface, and uses the C calling conventions
@@ -26,3 +26,56 @@ pub extern "C" fn add_ffi(left: c_ulonglong, right: c_ulonglong ) -> c_ulonglong
 * For that information, it expects a C header file with the function signatures. 
 * look for the build.rs
 */
+
+
+use std::ffi::{c_char, CStr, CString};
+use crate::do_something_to_string;
+
+#[no_mangle]
+pub extern "C" fn do_something_to_string_ffi(input: *const c_char) -> *mut *mut c_char {
+    let input_str = match unsafe { CStr::from_ptr(input) }.to_str() {
+        Ok(s) => s,
+        Err(_) => {
+            eprintln!("Invalid UTF-8 in input");
+            return std::ptr::null_mut();
+        },
+    };
+
+    let output = do_something_to_string(input_str);
+
+    let c_string = CString::new(output).expect("Could not convert output to CString");
+    let box_pointer = Box::into_raw(Box::new(c_string.into_raw()));
+    box_pointer
+}
+
+#[no_mangle]
+pub extern "C" fn free_string_pointer(pointer: *mut *mut c_char) {
+    unsafe {
+        let boxed_pointer = Box::from_raw(pointer);
+        let c_string = CString::from_raw(*boxed_pointer);
+        drop(c_string);
+        drop(boxed_pointer);
+    }
+}
+
+
+use crate::Point;
+
+#[repr(C)]
+pub struct PointFFI {
+    pub x: f64,
+    pub y: f64,
+}
+
+#[no_mangle]
+pub extern "C" fn distance_between_ffi(p1: &PointFFI, p2: &PointFFI) -> f64 {
+    let p1 = &Point {
+        x: p1.x,
+        y: p1.y,
+    };
+    let p2 = &Point {
+        x: p2.x,
+        y: p2.y,
+    };
+    p1.distance_to(p2)
+}
