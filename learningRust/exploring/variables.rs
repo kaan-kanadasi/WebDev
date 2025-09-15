@@ -101,8 +101,41 @@ fn main()
         *s = String:format("foofoo"); // dereferencing
     }
 
+    /*
+    There is a natural point at which we can return the memory our String needs to the allocator: when s goes out of scope. 
+    When a variable goes out of scope, Rust calls a special function for us. 
+    This function is called drop, and it’s where the author of String can put the code to return the memory. 
+    Rust calls drop automatically at the closing curly bracket.
+    */
 
-    
+
+    /*
+    The inverse of this is true for the relationship between scoping, ownership, and memory being freed via the drop function as well. 
+    When you assign a completely new value to an existing variable, Rust will call drop and free the original value’s memory immediately. 
+    Consider this code, for example:
+    */
+    let mut s = String::from("hello");
+    s = String::from("ahoy");
+
+    println!("{s}, world!");
+
+    /*
+    Here is how you would define and use a calculate_length function that has a reference to an object 
+    as a parameter instead of taking ownership of the value:
+    */
+    fn main() {
+        let s1 = String::from("hello");
+
+        let len = calculate_length(&s1);
+
+        println!("The length of '{s1}' is {len}.");
+    }
+
+    fn calculate_length(s: &String) -> usize {
+        s.len()
+    }
+
+
     // structs 
     struct RedFox {
         enemy: bool,

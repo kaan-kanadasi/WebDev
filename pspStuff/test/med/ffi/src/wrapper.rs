@@ -79,3 +79,10 @@ pub extern "C" fn distance_between_ffi(p1: &PointFFI, p2: &PointFFI) -> f64 {
     };
     p1.distance_to(p2)
 }
+
+
+#[no_mangle]
+pub extern "C" fn do_something_with_array_ffi(values: *const f64, n: c_ulonglong) -> f64 {
+    let values = unsafe { std::slice::from_raw_parts(values, n as usize) };
+    values.iter().sum()
+}
