@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "clap_cli",
+]
+resolver = "3"
