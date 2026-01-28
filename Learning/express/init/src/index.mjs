@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import { apiRouter } from './routes/apiRoutes.js'
 
 const PORT = process.env.PORT || 8000;

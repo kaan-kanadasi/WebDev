@@ -31,5 +31,4 @@ export const getAllData = (req, res) => {
   }
 
   res.json(filteredData)
-
 }
